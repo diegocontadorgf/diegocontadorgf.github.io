@@ -1,0 +1,279 @@
+---
+title: "Diego González Farias"
+author: 
+date: 
+output:
+  html_document:
+    fig_width: 10
+    fig_height: 6
+    theme: readable
+    toc: true
+   
+       
+---
+
+***
+
+<style type="text/css">
+
+h1.title {
+  font-size: 38px;
+  font-family: "Times New Roman", Times, serif;
+  color: Black ;
+  text-align: center;
+}
+
+/* Agregar un marco a toda la hoja */
+body {
+  border: 1px solid black;
+  margin: 10px; /* Márgenes del marco */
+  padding: 10px; /* Espacio dentro del marco */
+}
+
+
+</style>
+
+
+
+
+```{r echo = FALSE, out.width='50%', fig.align='center'}
+
+library(png)
+library(grid)
+
+library(png)
+library(grid)
+img <- readPNG("foto_diego.png")
+grid.raster(img)
+
+```
+
+
+
+*** 
+
+# *About me*
+
+***
+
+I am currently working at Convert Solutions, a company based in Guadalajara, Jalisco. In my role, I specialize in talent acquisition for operational and administrative positions. I have a track record of successfully identifying and attracting top talent to meet the organization's staffing needs.
+
+Furthermore, I actively contribute to various Human Resources tasks, leveraging my expertise in areas such as employee onboarding, performance management, and HR policy development. I have a strong understanding of best practices in these areas and strive to ensure that our HR processes align with industry standards and support the overall success of the company.
+
+In addition to my HR responsibilities, I also contribute part-time as a continuous improvement engineer. This role allows me to utilize Lean Six Sigma methodologies and tools to identify process inefficiencies, streamline workflows, and drive operational excellence. By implementing data-driven solutions and facilitating change management, I contribute to enhancing productivity and overall business performance.
+
+In my role, I leverage my proficiency in SQL, R, VBA, and DAX to filter and analyze substantial amounts of data, transforming it into actionable insights for the organization. I am passionate about process improvement and have a strong background in Lean Manufacturing tools and process standardization to reduce variability through Six Sigma methodologies.
+
+Currently, I am pursuing a degree in accounting and recently obtained my Green Belt Certification, with a Black Belt diploma (certification in progress). Furthermore, I am expanding my knowledge in R, SQL, and Python to further enhance my analytical capabilities.
+
+*** 
+
+
+
+***
+
+# *Job History*
+
+```{r echo = FALSE } 
+knitr::opts_chunk$set(echo = TRUE , warning = FALSE , message = FALSE  )
+``` 
+
+
+
+
+```{r echo = FALSE }
+# Cargar las librerías
+library(ggplot2)
+library(plotly)
+
+# Crear la tabla de datos
+datos_laborales <- data.frame(
+  Año = c(2016, 2017, 2018, 2022, 2023),
+  Empresa_Puesto = c(
+    "Beliveo Customer Service Representative",
+    "Teleperformance- Customer Service Representative",
+    "TTEC Customer Service Representative",
+    "TTEC Talent Acquisition Specialist",
+    "Convert Solutions- Talent Acquisition Specialist"
+  ), 
+  Description= c(
+    "I started my work history at this great Call Center where I practiced my English, Customer Service Skills and worked as a Billing Representative", 
+    " I then moved to another great Call Center where I had the oportunity to work with Bulk Accounts, improved my sales skills and learn to use multiple tools like Zendesk and CSR", 
+    " - Assist customers for a car-sharing company in different scenarios during 
+rental time. 
+- Coordinate Roadside assistance and work with different vendors to find a 
+solution effective and in a timely manner.",
+    " Responsible for the hiring process by performing reference checks, 
+background checks, screening resumes, interviews, and assessments. 
+- Completing paperwork for each individual hire. 
+- Coordinate with management to find the best candidate for any position 
+needed within the company.
+- Developed and implemented a dynamic dashboard that enabled efficient 
+resource allocation for Marketing and Talent Acquisition teams by 
+identifying the most effective candidate sources.",
+    " Responsible for the full operational, administrative, and 
+management recruiting cycle. 
+- HR Data Analytics and Dashboard management for multiple internal 
+clients using PowerBI and Excel.
+- Automation of processes using tools like Power Automate and 
+Power Apps.
+- I was able to provide insights for multiple KPI´s for HR and create 
+internal tools for employee management.
+- Actively support the Continuous Improvement Area in implementing 
+Sustainable Flow Manufacturing (SFM) principles and utilizing Lean 
+Six Sigma (LSS) tools to enhance Overall Equipment Efficiency (OEE).
+- Drive the implementation of Single-Minute Exchange of Die (SMED) 
+techniques to minimize downtime during production changeovers.
+- Develop and maintain databases and worksheets to monitor daily 
+production results, enabling proactive decision-making when goals 
+are not met."
+  )
+)
+
+# Establecer el orden deseado de los niveles del factor Empresa_Puesto
+datos_laborales$Empresa_Puesto <- factor(datos_laborales$Empresa_Puesto, levels = (datos_laborales$Empresa_Puesto))
+
+# Crear el gráfico ggplot
+grafico_ggplot <- ggplot(data = datos_laborales, aes(x = Año, y = Empresa_Puesto, group = 1, text = Description)) +
+  geom_line(color = "black")+
+  geom_point(color = "darkblue",size=3)+
+  labs(title = "Interactive plot - Job History ", x = "Year", y = "") +
+  theme_minimal()
+
+# Convertir el gráfico a un gráfico interactivo de plotly y configurar la barra de opciones
+grafico_interactivo <- ggplotly(grafico_ggplot) %>%
+  config(displayModeBar = FALSE)
+
+# Gráfico interactivo
+grafico_interactivo
+
+```
+
+
+
+***
+
+
+
+***
+
+
+
+# *Tools I use*
+
+```{r echo = FALSE } 
+knitr::opts_chunk$set(echo = TRUE , warning = FALSE , message = FALSE  )
+```
+
+
+```{r echo=FALSE}
+# Cargar librerías
+library(ggplot2)
+library(plotly)
+
+# Crear la tabla de skills y niveles
+skills <- c("Excel", "PowerBI", "R", "SQL", "Python")
+niveles <- c("Advanced", "Advanced", "Intermediate", "Intermediate", "Basic")
+
+datos_skills <- data.frame(Skill = skills, Nivel = niveles)
+
+# Convertir la columna "Skill" en un factor con el orden deseado
+datos_skills$Skill <- factor(datos_skills$Skill, levels = c("Excel", "PowerBI", "R", "SQL", "Python"))
+
+# Convertir la columna "Nivel" en un factor con el orden inverso
+datos_skills$Nivel <- factor(datos_skills$Nivel, levels = c("Basic", "Intermediate", "Advanced"))
+
+# Crear la gráfica de barras con el nuevo orden usando ggplot
+grafico_barras <- ggplot(datos_skills, aes(x = Skill, y = Nivel, fill = Nivel)) +
+  geom_bar(stat = "identity") +
+  labs(title = "", x = "Tool", y = " ")+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotar etiquetas del eje x para que sean legibles
+
+# Convertir el gráfico ggplot a un gráfico interactivo usando plotly
+grafico_interactivo <- ggplotly(grafico_barras)
+
+# Mostrar el gráfico interactivo
+grafico_interactivo
+
+```
+
+
+
+***
+
+
+
+***
+
+
+
+#  *Certifications*
+
+***
+
+*Live as if you were to die tomorrow. Learn as if you were to live forever *
+
+***
+
+\newline  \newline
+\newline  \newline
+
+
+```{r echo=FALSE }
+library(magick)
+library(ggplot2)
+library(gridExtra)
+library(grid)
+
+# Load the images using image_read() and resize them using image_scale() from magick
+bb <- image_read("BB.png") %>% image_scale("800x500")
+da <- image_read("DA GOOGLE.jpeg") %>% image_scale("800x500")
+ex <- image_read("EXCEL.PNG") %>% image_scale("800x500")
+gb <- image_read("GB.png") %>% image_scale("800x500")
+r <- image_read("R.png") %>% image_scale("800x500")
+sc <- image_read("SCRUM.png") %>% image_scale("800x500")
+sql <- image_read("SQL.png") %>% image_scale("800x500")
+yb <- image_read("YB.jpeg") %>% image_scale("800x500")
+ld <- image_read("LD.png") %>% image_scale("800x500")
+
+# Convert the images to 'grob' objects using rasterGrob() from the grid package
+bb_grob <- rasterGrob(bb)
+da_grob <- rasterGrob(da)
+ex_grob <- rasterGrob(ex)
+gb_grob <- rasterGrob(gb)
+r_grob <- rasterGrob(r)
+sc_grob <- rasterGrob(sc)
+sql_grob <- rasterGrob(sql)
+yb_grob <- rasterGrob(yb)
+ld_grob <- rasterGrob(ld)
+
+# Create the mosaic using grid.arrange()
+mosaico <- grid.arrange(bb_grob, da_grob, ex_grob, gb_grob, r_grob, sc_grob, sql_grob, yb_grob, ld_grob, ncol = 3)
+
+# Display the mosaic
+grid.newpage()
+grid.draw(mosaico)
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+# *Contact*
+
+
+diego.contador.gf@gmail.com
+
+[Linkedin](https://www.linkedin.com/in/diego-gonzalez-farias-248870234/)
+
+[Download my CV](cv.pdf)
